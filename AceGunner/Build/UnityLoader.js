@@ -1877,7 +1877,6 @@ var UnityLoader = UnityLoader || {
         var s = {
             url: t,
             onProgress: UnityLoader.Progress.handler,
-            compatibilityCheck: UnityLoader.compatibilityCheck,
             Module: {
                 deinitializers: [], intervals: {}, setInterval: function (e, t) {
                     var r = window.setInterval(e, t);
