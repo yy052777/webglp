@@ -1696,7 +1696,13 @@ var UnityLoader = UnityLoader || {
             }()
         }
     }(), compatibilityCheck: function (e, t, r) {
-        t()
+        UnityLoader.SystemInfo.hasWebGL ? UnityLoader.SystemInfo.mobile ? e.popup("hello 我是yaundongxu", [{
+            text: "OK",
+            callback: t
+        }]) : ["Edge", "Firefox", "Chrome", "Safari"].indexOf(UnityLoader.SystemInfo.browser) == -1 ? e.popup("Please note that your browser is not currently supported for this Unity WebGL content. Press OK if you wish to continue anyway.", [{
+            text: "OK",
+            callback: t
+        }]) : t() : e.popup("Your browser does not support WebGL", [{text: "OK", callback: r}])
     }, buildCompatibilityCheck: function (e, t, r) {
         function n() {
             if ("undefined" == typeof e.graphicsAPI) return !0;
@@ -1877,6 +1883,7 @@ var UnityLoader = UnityLoader || {
         var s = {
             url: t,
             onProgress: UnityLoader.Progress.handler,
+            //compatibilityCheck: UnityLoader.compatibilityCheck,
             Module: {
                 deinitializers: [], intervals: {}, setInterval: function (e, t) {
                     var r = window.setInterval(e, t);
