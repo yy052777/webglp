@@ -1699,7 +1699,7 @@ var UnityLoader = UnityLoader || {
         UnityLoader.SystemInfo.hasWebGL ? UnityLoader.SystemInfo.mobile ? e.popup("hello 我是yaundongxu", [{
             text: "OK",
             callback: t
-        }]) : ["Edge", "Firefox", "Chrome", "Safari"].indexOf(UnityLoader.SystemInfo.browser) == -1 ? e.popup("Please note that your browser is not currently supported for this Unity WebGL content. Press OK if you wish to continue anyway.", [{
+        }]) : ["Edge", "Firefox", "Chrome", "Safari"].indexOf(UnityLoader.SystemInfo.browser) == -1 ? e.popup("hello im yuandongxu", [{
             text: "OK",
             callback: t
         }]) : t() : e.popup("Your browser does not support WebGL", [{text: "OK", callback: r}])
