@@ -58,9 +58,9 @@
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/TestDemo.loader.js";
       var config = {
-        dataUrl: buildUrl + "/TestDemo.data.gz",
-        frameworkUrl: buildUrl + "/TestDemo.framework.js.gz",
-        codeUrl: buildUrl + "/TestDemo.wasm.gz",
+        dataUrl: buildUrl + "/TestDemo.data.unityweb",
+        frameworkUrl: buildUrl + "/TestDemo.framework.js.unityweb",
+        codeUrl: buildUrl + "/TestDemo.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "BigHouse",
@@ -80,7 +80,10 @@
         // Avoid draining fillrate performance on mobile devices,
         // and default/override low DPI mode on mobile browsers.
         config.devicePixelRatio = 1;
+        unityShowBanner('WebGL builds are not supported on mobile devices.');
       } else {
+        // canvas.style.width = "100vw";
+        // canvas.style.height = "100vh";
         canvas.style.width = "100vw";
         canvas.style.height = "100vh";
       }
