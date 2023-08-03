@@ -3,19 +3,119 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Naughty Kitchen</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
     <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/webgl.json", {onProgress: UnityProgress});
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Build.json", {onProgress: UnityProgress});
+
+      function Ads_RewardVideo(str) {
+          window.h5sdk.adBreak({
+            type: "reward",
+            name: "my_reward",
+            beforeAd: () => {
+              console.log("beforeAd");
+            },
+            afterAd: () => {
+
+              console.log("afterAd");
+            },
+            adDismissed: () => {
+              console.log("adDismissed");
+            },
+            adViewed: () => {
+              console.log("adViewed");
+            },
+            beforeReward: (showAdFn) => {
+              console.log("beforeReward");
+              showAdFn();
+            },
+            adBreakDone: (placementInfo) => {
+              if (placementInfo.breakStatus === "dismissed") {
+                console.log("取消观看" + placementInfo.breakStatus);
+                return;
+              } else if (placementInfo.breakStatus !== "viewed") {
+                console.log("广告异常" + placementInfo.breakStatus);
+                return;
+              }
+              console.log(str+"发放奖励");
+              if(str=="DoubleSpeed"){   unityInstance.SendMessage("BoostManager", "DoubleSpeedRewardCallBack");}
+
+            },
+          });
+
+        }
+        function Ads_Banner() {
+
+        }
+        function Ads_Insert() {
+          window.h5sdk.adBreak({
+            type: "start", // type请按照文档选择合适的https://developers.google.com/ad-placement/docs/placement-types
+            name: "my_start",
+            beforeAd: () => {
+              console.log("beforeAd");
+            },
+            afterAd: () => {
+              console.log("afterAd");
+            },
+            adBreakDone: () => {
+              // this.score = 0;
+              // this.erase();
+              // this.play();
+            },
+          });
+        }
     </script>
   </head>
   <body>
     <div class="webgl-content">
-      <div id="unityContainer" style="width: 100vw; height: 90vh"></div>
-    </div>
-  </body>
+      <div id="unityContainer" style="width: 100vw; height: 100vh"></div>
+      <script src="https://www.hippoobox.com/static/sdk/adsdk_1.2.1.0.js"></script>
+    </body>
+    <script>window.h5sdk.init(4210600, "10vw", "10vw", "", "", {
+      float: {
+        env: "pre", // Float广告请求预发环境，游戏正式上线前请设为env:""
+      },
+      ga: {
+        id: "G-Q554B8ZL50", // 运营给到的ID应该是UA-XXXXXXXXX-XX格式
+      },
+      adsense: {
+        client: "ca-pub-7112055678212370",
+        "data-ad-frequency-hint": "45s",
+        "data-adbreak-test": "on",//正式广告需去除
+        "data-ad-channel": "1234567", // 游戏广告自定义渠道ID
+    
+        // 热启动广告，既手机锁屏/恢复，浏览器切换时展示的广告
+        // pauseCallback 和 resumeCallback 必须两个同时存在，才会展示热启动广告
+        // "pauseCallback":()=>{
+        //   console.log("👩💻 my game paused");
+        //   // 请在这里加入游戏暂停代码
+        // },
+        // "resumeCallback":()=>{
+        //   console.log("👩💻 my game restart");
+        //   // 请在这里加入游戏重新开始代码
+        // },
+    
+        callback: () => {
+          window.h5sdk.athenaSend("game_start", "my_flip_coin_game"); //开始游戏自定义埋点
+          window.h5sdk.adConfig({
+            preloadAdBreaks: "on",
+            onReady: () => {
+              // 不要在这里初始化游戏，因为onReady有失败的情况！！！
+              // 展示开屏广告
+              // 当广告展示失败错误为notReady, timeout, noAdPreloaded, other的时候，会展示兜底广告
+              window.h5sdk.adBreak({
+                type: "preroll",
+                name: "my_preroll",
+                adBreakDone: () => {}, // 也不要在这里初始化游戏，因为用户不关闭广告，则游戏无法初始化！！！
+              });
+            },
+          });
+        },
+        
+      },
+    });</script>
 </html>
