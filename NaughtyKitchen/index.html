@@ -10,7 +10,7 @@
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
     <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Build.json", {onProgress: UnityProgress});
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/NaughtyKitchen.json", {onProgress: UnityProgress});
 
       function Ads_RewardVideo(str) {
           window.h5sdk.adBreak({
@@ -72,11 +72,9 @@
         }
     </script>
   </head>
-  <body>
-    <div class="webgl-content">
-      <div id="unityContainer" style="width: 100vw; height: 100vh"></div>
-      <script src="https://www.hippoobox.com/static/sdk/adsdk_1.2.1.0.js"></script>
-    </body>
+  <div class="webgl-content">
+    <div id="unityContainer" style="width:  960px; height: 600px"></div>
+    <script src="https://www.hippoobox.com/static/sdk/adsdk_1.2.1.0.js"></script>
     <script>window.h5sdk.init(4210600, "10vw", "10vw", "", "", {
       float: {
         env: "pre", // Float广告请求预发环境，游戏正式上线前请设为env:""
