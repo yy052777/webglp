@@ -39,11 +39,13 @@
                 return;
               } else if (placementInfo.breakStatus !== "viewed") {
                 console.log("广告异常" + placementInfo.breakStatus);
+                unityInstance.SendMessage("GameManager", "VideoError")
                 return;
               }
               console.log(str+"发放奖励");
               if(str=="DoubleSpeed"){   unityInstance.SendMessage("BoostManager", "DoubleSpeedRewardCallBack");}
-
+              if(str=="GetDiamond"){   unityInstance.SendMessage("FreeCoin", "GetDiamondCallBack");}
+              if(str=="UnlockKitchen"){   unityInstance.SendMessage("Barrier", "UnlockKitchenCallBack");}
             },
           });
 
