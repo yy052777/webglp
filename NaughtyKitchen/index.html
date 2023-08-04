@@ -70,35 +70,33 @@
             },
           });
         }
+        
     </script>
   </head>
   <div class="webgl-content">
     <div id="unityContainer" style="width:  100vw; height: 92vh"></div>
-    <script src="https://www.hippoobox.com/static/sdk/adsdk_1.2.1.0.js"></script>
-    <script>window.h5sdk.init(4210600, "10vw", "10vw", "", "", {
+
+    <script>//这个GA直接复制就可以。
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-QZ9RJWFBXE');
+    </script>
+    
+    
+    <script>window.h5sdk.init(4213388, "10vw", "10vw", "", "", {
       float: {
-        env: "pre", // Float广告请求预发环境，游戏正式上线前请设为env:""
+        env: "", // Float广告请求预发环境，游戏正式上线前请设为env:""
       },
       ga: {
-        id: "G-Q554B8ZL50", // 运营给到的ID应该是UA-XXXXXXXXX-XX格式
+        id: "G-QZ9RJWFBXE", // 运营给到的ID应该是UA-XXXXXXXXX-XX格式
       },
       adsense: {
-        client: "ca-pub-7112055678212370",
-        "data-ad-frequency-hint": "45s",
-        "data-adbreak-test": "on",//正式广告需去除
-        "data-ad-channel": "1234567", // 游戏广告自定义渠道ID
-    
-        // 热启动广告，既手机锁屏/恢复，浏览器切换时展示的广告
-        // pauseCallback 和 resumeCallback 必须两个同时存在，才会展示热启动广告
-        // "pauseCallback":()=>{
-        //   console.log("👩💻 my game paused");
-        //   // 请在这里加入游戏暂停代码
-        // },
-        // "resumeCallback":()=>{
-        //   console.log("👩💻 my game restart");
-        //   // 请在这里加入游戏重新开始代码
-        // },
-    
+        client: "ca-pub-2270136017335510",
+        // "data-adbreak-test": "on",//正式广告需去除   data-adbreak-test ="on"
+        "data-ad-frequency-hint":"45",
+
         callback: () => {
           window.h5sdk.athenaSend("game_start", "my_flip_coin_game"); //开始游戏自定义埋点
           window.h5sdk.adConfig({
@@ -115,7 +113,7 @@
             },
           });
         },
-        
+
       },
     });</script>
   </div>>
